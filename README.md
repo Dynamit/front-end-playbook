@@ -39,15 +39,15 @@
 
 ## Code Quality
 
-- Adhere to the Code Style Guide
+- Adhere to the [Code Style Guide](http://dynamit.github.io/code-standards/standards/front-end/)
 - DRY
 - Leverage Technical Debt
-- Use IE VMS to test code
-- Thoroughly document code use JSDOC conventions
+- Use IE VMS to test code (or [BrowserStack](https://www.browserstack.com))
+- Thoroughly document code use [JSDoc](http://usejsdoc.org/) conventions
 
 ## Ops
 
-- use codepen to rapidly protoype ideas 
+- use codepen to rapidly protoype ideas
 - use the front-end starter kit when starting a project. Continually improve it by contributing learning during each project.
 - use gulp to manage the asset compilation pipeline
 - use webpack for asset bundling
@@ -65,30 +65,37 @@
 
 # Style Sheets
 
-- adhere to the Code Style Guide
+- Adhere to the [Code Style Guide](http://dynamit.github.io/code-standards/standards/front-end/stylesheets.html)
 - use Sass
 - use low-specificty selectors. avoid ids, tags, combining selectors, prefer classes and attr selectors
-- compose styles mobile-first (example of good media query)
+- compose styles mobile-first. example: @media (min-width: 768px) as opposed to @media (max-width: 767px)
 - use bullet-proof font-face declaration
 
 # JavaScript
 
-- use lodash
+- vanilla if possible
+- use [axios](https://github.com/axios/axios) for ajax
 - use js-cookie
 - write in modules
+- prefer libraries to full-blown frameworks
+- write [modern javascript](https://babeljs.io/) when you can
+- keep bundles small (< 50k), consider [lazy-loading](https://webpack.js.org/guides/lazy-loading) pages / components
 
 # Performance
 
-- use the following metrics as a baseline for performance (include table)
-- consider subsetting fonts
+- use [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+- turn on server-side caching
+- develop for mobile users on 3G (slower) networks
+- test on real devices
 - use progressive jpgs
-- load scripts async (async attr)
-- use dns prefetching
+- use [resource hints](https://www.keycdn.com/blog/resource-hints/)
+- prevent render-blocking javascript using [async or defer](http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html)
 - gzip
 - minify scripts and stylesheets
+- turn off sourcemaps in production
 - reduce http requests
-- cache assets for immediate loading on subseqent visits
-- defer loading large images. use lofi preview images on initial load https://code.facebook.com/posts/991252547593574/the-technology-behind-preview-photos/
+- lazy-load [css](https://github.com/filamentgroup/loadCSS) and [js](https://webpack.js.org/guides/lazy-loading)
+- lazy load [images](https://github.com/aFarkas/lazysizes)
 
 # SEO & Meta
 
@@ -101,6 +108,7 @@ Include a canonical url tag on each page. Use [trailing slashes](http://googlewe
 - use a well-formatted title tag on every page
 - include social meta data https://adactio.com/journal/9881
 - include a retina favicon https://daringfireball.net/2013/01/retina_favicons
+- add schema.org tags
 
 # Accessibility
 ## Visually Hide Text, But Allow Screen Readers to Read
@@ -118,13 +126,13 @@ Include a canonical url tag on each page. Use [trailing slashes](http://googlewe
 }
 ```
 
-## Links 
+## Links
 - Avoid using ALL CAPS (even `text-transform: uppercase` can make it sound like a screen reader is yelling at you)
 - Use visually hidden spans to add additonal context
 
 ```html
 <!-- not much context -->
-<a href="tel:18885555555">1-888-555-5555</a> 
+<a href="tel:18885555555">1-888-555-5555</a>
 
 <!-- text is hidden visually, but screen reader can read it -->
 <a href="tel:18885555555"><span class="visually-hidden">For more information on XYZ Corp. call</span> 1-888-555-5555</a>
@@ -150,26 +158,26 @@ Coming Soon
 - Can update the outline so it looks different than default, but a visible border must be displayed
 - Common failure is using `blur()` to take off focus, instead focus on another item
 - Give your elements `:focus` wherever you have `:hover` in your CSS
-- Focus needs to be taken into account when using `.hover()` 
+- Focus needs to be taken into account when using `.hover()`
 - Typical failures occur for dropdown navigation not shown when the user focuses on a the top level menu item
 
 ## Images
 - Always have alt text of some sort
 ```html
 <!-- indicates the image is decorative and does not have text in the image -->
-<img alt="" src="../.."> 
+<img alt="" src="../..">
 
 <!-- indicates the image is decorative and does not have text in the image -->
-<img alt="This text should be descriptive/informative, but not repeat information that is already present" src="../.."> 
+<img alt="This text should be descriptive/informative, but not repeat information that is already present" src="../..">
 ```
 - `alt` text Should be kept under 125 characters
 - Items like charts or maps that represent a lot of information, `<caption>` or `longdesc` should be used (example needed)
 - GIFs should not have more than 3 flashes per second
 - If possible, don't play GIF until hovered over
-- Never use the filename as alt text 
+- Never use the filename as alt text
 
 ## Headings
-- [Use semantic markup and structure your page with one](http://adrianroselli.com/2013/12/the-truth-about-truth-about-multiple-h1.html) `<h1>` 
+- [Use semantic markup and structure your page with one](http://adrianroselli.com/2013/12/the-truth-about-truth-about-multiple-h1.html) `<h1>`
 - Think of your page as the table of contents
 - Turn off styling to test if the visual heirarchy makes sense
 - Screen readers use headings as hot key points
@@ -199,8 +207,10 @@ Coming Soon
 <input type="text" name="whatever" id="theinput">
 ```
 
-
 ## Random Tidbits
 - Include a `lang=` attribute on the `<html>` tag
 - Don't use `<meta name="viewport" content="user-scalable=no" />`. Users must be able to zoom
 - Take into account that users should be able to go to zoom in to 200% and have the site still work
+
+## Further Reading
+An excellent resource on accessibility for the web: [eBay MIND Patterns](http://ianmcburnie.github.io/mindpatterns/)
